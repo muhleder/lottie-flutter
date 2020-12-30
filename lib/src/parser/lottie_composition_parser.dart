@@ -62,7 +62,7 @@ class LottieCompositionParser {
           frameRate = reader.nextDouble();
           break;
         case 5:
-          var version = reader.nextString();
+          var version = reader.nextString()!;
           var versions = version.split('.');
           var majorVersion = int.parse(versions[0]);
           var minorVersion = int.parse(versions[1]);
@@ -133,19 +133,22 @@ class LottieCompositionParser {
     'u' // 5
   ]);
 
-  static void _parseAssets(JsonReader reader, LottieComposition composition,
-      Map<String, List<Layer>> precomps, Map<String, LottieImageAsset> images) {
+  static void _parseAssets(
+      JsonReader reader,
+      LottieComposition composition,
+      Map<String?, List<Layer>> precomps,
+      Map<String?, LottieImageAsset> images) {
     reader.beginArray();
     while (reader.hasNext()) {
-      String id;
+      String? id;
       // For precomps
       var layers = <Layer>[];
       var layerMap = <int, Layer>{};
       // For images
       var width = 0;
       var height = 0;
-      String imageFileName;
-      String relativeFolder;
+      String? imageFileName;
+      String? relativeFolder;
       reader.beginObject();
       while (reader.hasNext()) {
         switch (reader.selectName(_assetsNames)) {
@@ -196,7 +199,7 @@ class LottieCompositionParser {
 
   static final JsonReaderOptions _fontNames = JsonReaderOptions.of(['list']);
 
-  static void _parseFonts(JsonReader reader, Map<String, Font> fonts) {
+  static void _parseFonts(JsonReader reader, Map<String?, Font> fonts) {
     reader.beginObject();
     while (reader.hasNext()) {
       switch (reader.selectName(_fontNames)) {
@@ -233,7 +236,7 @@ class LottieCompositionParser {
       JsonReader reader, LottieComposition composition, List<Marker> markers) {
     reader.beginArray();
     while (reader.hasNext()) {
-      String comment;
+      String? comment;
       var frame = 0.0;
       var durationFrames = 0.0;
       reader.beginObject();
@@ -254,7 +257,7 @@ class LottieCompositionParser {
         }
       }
       reader.endObject();
-      markers.add(Marker(composition, comment,
+      markers.add(Marker(composition, comment ?? '',
           startFrame: frame, durationFrames: durationFrames));
     }
     reader.endArray();

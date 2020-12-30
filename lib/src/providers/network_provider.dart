@@ -10,11 +10,11 @@ import 'provider_io.dart' if (dart.library.html) 'provider_web.dart' as network;
 
 class NetworkLottie extends LottieProvider {
   NetworkLottie(this.url,
-      {this.headers, LottieImageProviderFactory imageProviderFactory})
+      {this.headers, LottieImageProviderFactory? imageProviderFactory})
       : super(imageProviderFactory: imageProviderFactory);
 
   final String url;
-  final Map<String, String> headers;
+  final Map<String, String>? headers;
 
   @override
   Future<LottieComposition> load() async {
@@ -40,7 +40,7 @@ class NetworkLottie extends LottieProvider {
 
     if (imageProvider == null) {
       var imageUrl = jsonUri
-          .resolve(p.url.join(lottieImage.dirName, lottieImage.fileName));
+          .resolve(p.url.join(lottieImage.dirName!, lottieImage.fileName));
       imageProvider = NetworkImage(imageUrl.toString());
     }
 

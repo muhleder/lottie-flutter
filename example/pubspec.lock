@@ -53,19 +53,21 @@ packages:
     source: hosted
     version: "1.15.0-nullsafety.5"
   convert:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: convert
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "3.0.0-nullsafety.0"
   crypto:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.5"
+      path: "."
+      ref: a5ec902dda5a635a35c6b363ec64458cf84c5872
+      resolved-ref: a5ec902dda5a635a35c6b363ec64458cf84c5872
+      url: "git://github.com/dart-lang/crypto.git"
+    source: git
+    version: "2.2.0-nullsafety.0"
   fake_async:
     dependency: transitive
     description:
@@ -110,7 +112,7 @@ packages:
       name: golden_toolkit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.0"
+    version: "0.9.0-nullsafety.0"
   http:
     dependency: "direct main"
     description:
@@ -306,5 +308,5 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-29.10.beta <3.0.0"
   flutter: ">=1.12.13+hotfix.5 <2.0.0"

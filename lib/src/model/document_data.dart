@@ -3,30 +3,30 @@ import 'dart:ui';
 enum Justification { leftAlign, rightAlign, center }
 
 class DocumentData {
-  final String text;
-  final String fontName;
-  final double /*!*/ size;
-  final Justification /*!*/ justification;
-  final int /*!*/ tracking;
-  final double /*!*/ lineHeight;
-  final double /*!*/ baselineShift;
-  final Color /*!*/ color;
-  final Color /*!*/ strokeColor;
-  final double /*!*/ strokeWidth;
-  final bool /*!*/ strokeOverFill;
+  final String? text;
+  final String? fontName;
+  final double size;
+  final Justification justification;
+  final int tracking;
+  final double lineHeight;
+  final double baselineShift;
+  final Color color;
+  final Color strokeColor;
+  final double strokeWidth;
+  final bool strokeOverFill;
 
   DocumentData({
     this.text,
     this.fontName,
-    this.size,
-    this.justification,
-    this.tracking,
-    this.lineHeight,
-    this.baselineShift,
-    this.color,
-    this.strokeColor,
-    this.strokeWidth,
-    this.strokeOverFill,
+    required this.size,
+    required this.justification,
+    required this.tracking,
+    required this.lineHeight,
+    required this.baselineShift,
+    required this.color,
+    required this.strokeColor,
+    required this.strokeWidth,
+    required this.strokeOverFill,
   });
 
   @override

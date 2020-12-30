@@ -10,7 +10,7 @@ void main() {
   var root = Directory.current.path;
 
   for (var project in getSubOrContainingProjects(root)) {
-    for (var dartFile in project.getDartFiles().where(
+    for (var dartFile in project!.getDartFiles().where(
         (dartFile) => dartFile.normalizedRelativePath.startsWith('lib/'))) {
       fixFile(dartFile);
     }
@@ -40,7 +40,7 @@ String fixCode(DartFile dartFile, String content) {
       var absolutePrefix = 'package:${dartFile.project.packageName}/';
       if (uriValue.startsWith(absolutePrefix)) {
         var absoluteImportFromLib = uriValue.replaceAll(absolutePrefix, '');
-        var thisFilePath = dartFile.relativePath.substring('lib/'.length);
+        var thisFilePath = dartFile.relativePath!.substring('lib/'.length);
         var relativePath = p
             .relative(absoluteImportFromLib, from: p.dirname(thisFilePath))
             .replaceAll('\\', '/');

@@ -1,9 +1,10 @@
 import '../../value/keyframe.dart';
 import 'animatable_value.dart';
 
-abstract class BaseAnimatableValue<V, O> implements AnimatableValue<V/*!*/, O/*!*/> {
+abstract class BaseAnimatableValue<V extends Object, O extends Object>
+    implements AnimatableValue<V, O> {
   @override
-  final List<Keyframe<V>>/*!*/ keyframes;
+  final List<Keyframe<V>> keyframes;
 
   /// Create a default static animatable path.
   BaseAnimatableValue.fromValue(V value)

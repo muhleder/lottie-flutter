@@ -2,7 +2,7 @@ import 'dart:ui';
 import '../../value/keyframe.dart';
 import 'keyframe_animation.dart';
 
-class DoubleKeyframeAnimation extends KeyframeAnimation<double/*!*/> {
+class DoubleKeyframeAnimation extends KeyframeAnimation<double> {
   DoubleKeyframeAnimation(List<Keyframe<double>> keyframes) : super(keyframes);
 
   @override
@@ -12,7 +12,7 @@ class DoubleKeyframeAnimation extends KeyframeAnimation<double/*!*/> {
     }
 
     if (valueCallback != null) {
-      var value = valueCallback.getValueInternal(
+      var value = valueCallback!.getValueInternal(
           keyframe.startFrame,
           keyframe.endFrame,
           keyframe.startValue,
@@ -25,6 +25,7 @@ class DoubleKeyframeAnimation extends KeyframeAnimation<double/*!*/> {
       }
     }
 
-    return lerpDouble(keyframe.startValue, keyframe.endValue, keyframeProgress);
+    return lerpDouble(
+        keyframe.startValue, keyframe.endValue, keyframeProgress)!;
   }
 }

@@ -18,18 +18,18 @@ class GradientStrokeContent extends BaseStrokeContent {
   static final int _cacheStepsMs = 32;
 
   @override
-  final String name;
+  final String? name;
   final bool _hidden;
   final _linearGradientCache = <int, Gradient>{};
   final _radialGradientCache = <int, Gradient>{};
 
-  final GradientType _type;
+  final GradientType? _type;
   final int _cacheSteps;
   final BaseKeyframeAnimation<GradientColor, GradientColor> _colorAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _startPointAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _endPointAnimation;
-  ValueCallbackKeyframeAnimation<List<Color>,
-      List<Color>> /*?*/ _colorCallbackAnimation;
+  ValueCallbackKeyframeAnimation<List<Color>, List<Color>>?
+      _colorCallbackAnimation;
 
   GradientStrokeContent(final LottieDrawable lottieDrawable, BaseLayer layer,
       GradientStroke stroke)
@@ -39,16 +39,16 @@ class GradientStrokeContent extends BaseStrokeContent {
         _cacheSteps =
             (lottieDrawable.composition.duration.inMilliseconds / _cacheStepsMs)
                 .round(),
-        _colorAnimation = stroke.gradientColor.createAnimation(),
-        _startPointAnimation = stroke.startPoint.createAnimation(),
-        _endPointAnimation = stroke.endPoint.createAnimation(),
+        _colorAnimation = stroke.gradientColor!.createAnimation(),
+        _startPointAnimation = stroke.startPoint!.createAnimation(),
+        _endPointAnimation = stroke.endPoint!.createAnimation(),
         super(lottieDrawable, layer,
             cap: lineCapTypeToPaintCap(stroke.capType),
             join: lineJoinTypeToPaintJoin(stroke.joinType),
             miterLimit: stroke.miterLimit,
-            opacity: stroke.opacity,
-            width: stroke.width,
-            dashPattern: stroke.lineDashPattern,
+            opacity: stroke.opacity!,
+            width: stroke.width!,
+            dashPattern: stroke.lineDashPattern!,
             dashOffset: stroke.dashOffset) {
     _colorAnimation.addUpdateListener(onUpdateListener);
     layer.addAnimation(_colorAnimation);
@@ -61,7 +61,8 @@ class GradientStrokeContent extends BaseStrokeContent {
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix,
+      {int? parentAlpha}) {
     if (_hidden) {
       return;
     }
@@ -75,7 +76,7 @@ class GradientStrokeContent extends BaseStrokeContent {
 
     paint.shader = gradient;
 
-    super.draw(canvas, size, parentMatrix, parentAlpha: parentAlpha);
+    super.draw(canvas, size, parentMatrix, parentAlpha: parentAlpha!);
   }
 
   Gradient _getLinearGradient(Matrix4 parentMatrix) {
@@ -142,7 +143,7 @@ class GradientStrokeContent extends BaseStrokeContent {
 
   List<Color> _applyDynamicColorsIfNeeded(List<Color> colors) {
     if (_colorCallbackAnimation != null) {
-      var dynamicColors = _colorCallbackAnimation.value;
+      var dynamicColors = _colorCallbackAnimation!.value;
       if (colors.length == dynamicColors.length) {
         for (var i = 0; i < colors.length; i++) {
           colors[i] = dynamicColors[i];
@@ -158,7 +159,7 @@ class GradientStrokeContent extends BaseStrokeContent {
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     super.addValueCallback(property, callback);
     if (property == LottieProperty.gradientColor) {
       if (_colorCallbackAnimation != null) {
@@ -170,7 +171,7 @@ class GradientStrokeContent extends BaseStrokeContent {
       } else {
         _colorCallbackAnimation = ValueCallbackKeyframeAnimation(
             callback as LottieValueCallback<List<Color>>);
-        _colorCallbackAnimation.addUpdateListener(onUpdateListener);
+        _colorCallbackAnimation!.addUpdateListener(onUpdateListener);
         layer.addAnimation(_colorCallbackAnimation);
       }
     }

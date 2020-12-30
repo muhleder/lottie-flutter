@@ -8,14 +8,14 @@ import 'content_model.dart';
 enum MergePathsMode { merge, add, substract, intersect, excludeIntersections }
 
 class MergePaths implements ContentModel {
-  final String/*!*/ name;
-  final MergePathsMode/*!*/ mode;
-  final bool/*!*/ hidden;
+  final String name;
+  final MergePathsMode mode;
+  final bool hidden;
 
-  MergePaths({this.name, this.mode, this.hidden});
+  MergePaths({required this.name, required this.mode, required this.hidden});
 
   @override
-  Content /*?*/ toContent(LottieDrawable drawable, BaseLayer layer) {
+  Content? toContent(LottieDrawable drawable, BaseLayer layer) {
     if (!drawable.enableMergePaths) {
       logger.warning('Animation contains merge paths but they are disabled.');
       return null;

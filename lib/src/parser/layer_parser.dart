@@ -79,9 +79,9 @@ class LayerParser {
   static Layer parseJson(JsonReader reader, LottieComposition composition) {
     // This should always be set by After Effects. However, if somebody wants to minify
     // and optimize their json, the name isn't critical for most cases so it can be removed.
-    var layerName = 'UNSET';
-    LayerType layerType;
-    String refId;
+    String? layerName = 'UNSET';
+    LayerType? layerType;
+    String? refId;
     var layerId = 0;
     var solidWidth = 0;
     var solidHeight = 0;
@@ -93,14 +93,14 @@ class LayerParser {
     var startFrame = 0.0;
     var inFrame = 0.0;
     var outFrame = 0.0;
-    String cl;
+    String? cl;
     var hidden = false;
 
     var matteType = MatteType.none;
-    AnimatableTransform transform;
-    AnimatableTextFrame text;
-    AnimatableTextProperties textProperties;
-    AnimatableDoubleValue timeRemapping;
+    AnimatableTransform? transform;
+    AnimatableTextFrame? text;
+    AnimatableTextProperties? textProperties;
+    AnimatableDoubleValue? timeRemapping;
 
     var masks = <Mask>[];
     var shapes = <ContentModel>[];
@@ -135,7 +135,7 @@ class LayerParser {
           solidHeight = (reader.nextInt() * window.devicePixelRatio).round();
           break;
         case 7:
-          solidColor = MiscUtils.parseColor(reader.nextString(),
+          solidColor = MiscUtils.parseColor(reader.nextString()!,
               warningCallback: composition.addWarning);
           break;
         case 8:
@@ -191,7 +191,7 @@ class LayerParser {
           break;
         case 13:
           reader.beginArray();
-          var effectNames = <String>[];
+          var effectNames = <String?>[];
           while (reader.hasNext()) {
             reader.beginObject();
             while (reader.hasNext()) {
@@ -283,7 +283,7 @@ class LayerParser {
         endFrame: double.maxFinite);
     inOutKeyframes.add(outKeyframe);
 
-    if (layerName.endsWith('.ai') || 'ai' == cl) {
+    if (layerName!.endsWith('.ai') || 'ai' == cl) {
       composition
           .addWarning('Convert your Illustrator layers to shape layers.');
     }

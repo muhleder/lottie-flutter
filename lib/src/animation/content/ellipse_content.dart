@@ -22,7 +22,7 @@ class EllipseContent implements PathContent, KeyPathElementContent {
   final Path _path = PathFactory.create();
 
   @override
-  final String name;
+  final String? name;
   final LottieDrawable lottieDrawable;
   final BaseKeyframeAnimation<Object, Offset> _sizeAnimation;
   final BaseKeyframeAnimation<Object, Offset> _positionAnimation;
@@ -115,12 +115,12 @@ class EllipseContent implements PathContent, KeyPathElementContent {
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.ellipseSize) {
-      _sizeAnimation.setValueCallback(callback as LottieValueCallback<Offset>);
+      _sizeAnimation.setValueCallback(callback as LottieValueCallback<Offset>?);
     } else if (property == LottieProperty.position) {
       _positionAnimation
-          .setValueCallback(callback as LottieValueCallback<Offset>);
+          .setValueCallback(callback as LottieValueCallback<Offset>?);
     }
   }
 }

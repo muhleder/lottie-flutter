@@ -1,8 +1,7 @@
-import 'package:meta/meta.dart';
 import 'content/shape_group.dart';
 
 class FontCharacter {
-  static int hashFor(String character, String fontFamily, String style) {
+  static int hashFor(String character, String? fontFamily, String? style) {
     var result = 0;
     result = 31 * result + character.hashCode;
     result = 31 * result + fontFamily.hashCode;
@@ -10,20 +9,20 @@ class FontCharacter {
     return result;
   }
 
-  final List<ShapeGroup> /*!*/ shapes;
-  final String /*!*/ character;
-  final double /*!*/ size;
-  final double /*!*/ width;
-  final String style;
-  final String fontFamily;
+  final List<ShapeGroup?> shapes;
+  final String character;
+  final double size;
+  final double width;
+  final String? style;
+  final String? fontFamily;
 
   FontCharacter(
-      {@required this.shapes,
-      @required this.character,
-      @required this.size,
-      @required this.width,
-      @required this.style,
-      @required this.fontFamily});
+      {required this.shapes,
+      required this.character,
+      required this.size,
+      required this.width,
+      required this.style,
+      required this.fontFamily});
 
   @override
   int get hashCode {

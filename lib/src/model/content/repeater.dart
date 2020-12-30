@@ -7,16 +7,16 @@ import '../layer/base_layer.dart';
 import 'content_model.dart';
 
 class Repeater implements ContentModel {
-  final String name;
-  final AnimatableDoubleValue copies;
-  final AnimatableDoubleValue offset;
-  final AnimatableTransform transform;
-  final bool/*!*/ hidden;
+  final String? name;
+  final AnimatableDoubleValue? copies;
+  final AnimatableDoubleValue? offset;
+  final AnimatableTransform? transform;
+  final bool hidden;
 
-  Repeater({this.name, this.copies, this.offset, this.transform, this.hidden});
+  Repeater({this.name, this.copies, this.offset, this.transform, required this.hidden});
 
   @override
-  Content /*?*/ toContent(LottieDrawable drawable, BaseLayer layer) {
+  Content? toContent(LottieDrawable drawable, BaseLayer layer) {
     return RepeaterContent(drawable, layer, this);
   }
 }

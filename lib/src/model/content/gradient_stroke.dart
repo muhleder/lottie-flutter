@@ -11,19 +11,19 @@ import 'gradient_type.dart';
 import 'shape_stroke.dart';
 
 class GradientStroke implements ContentModel {
-  final String name;
-  final GradientType gradientType;
-  final AnimatableGradientColorValue gradientColor;
-  final AnimatableIntegerValue opacity;
-  final AnimatablePointValue startPoint;
-  final AnimatablePointValue endPoint;
-  final AnimatableDoubleValue width;
-  final LineCapType capType;
-  final LineJoinType joinType;
-  final double /*!*/ miterLimit;
-  final List<AnimatableDoubleValue /*!*/ > lineDashPattern;
-  final AnimatableDoubleValue /*?*/ dashOffset;
-  final bool /*!*/ hidden;
+  final String? name;
+  final GradientType? gradientType;
+  final AnimatableGradientColorValue? gradientColor;
+  final AnimatableIntegerValue? opacity;
+  final AnimatablePointValue? startPoint;
+  final AnimatablePointValue? endPoint;
+  final AnimatableDoubleValue? width;
+  final LineCapType? capType;
+  final LineJoinType? joinType;
+  final double miterLimit;
+  final List<AnimatableDoubleValue >? lineDashPattern;
+  final AnimatableDoubleValue? dashOffset;
+  final bool hidden;
 
   GradientStroke({
     this.name,
@@ -35,10 +35,10 @@ class GradientStroke implements ContentModel {
     this.width,
     this.capType,
     this.joinType,
-    this.miterLimit,
+    required this.miterLimit,
     this.lineDashPattern,
     this.dashOffset,
-    this.hidden,
+    required this.hidden,
   });
 
   @override

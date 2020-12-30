@@ -13,17 +13,16 @@ class AssetLottie extends LottieProvider {
     this.assetName, {
     this.bundle,
     this.package,
-    LottieImageProviderFactory imageProviderFactory,
-  })  : assert(assetName != null),
-        super(imageProviderFactory: imageProviderFactory);
+    LottieImageProviderFactory? imageProviderFactory,
+  }) : super(imageProviderFactory: imageProviderFactory);
 
   final String assetName;
   String get keyName =>
       package == null ? assetName : 'packages/$package/$assetName';
 
-  final AssetBundle bundle;
+  final AssetBundle? bundle;
 
-  final String package;
+  final String? package;
 
   @override
   Future<LottieComposition> load() async {

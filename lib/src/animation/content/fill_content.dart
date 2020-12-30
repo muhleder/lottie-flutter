@@ -22,12 +22,12 @@ class FillContent implements DrawingContent, KeyPathElementContent {
   final Paint _paint = Paint();
   final BaseLayer layer;
   @override
-  final String name;
+  final String? name;
   final bool _hidden;
   final List<PathContent> _paths = <PathContent>[];
-  BaseKeyframeAnimation<Color, Color> _colorAnimation;
-  BaseKeyframeAnimation<int, int> _opacityAnimation;
-  BaseKeyframeAnimation<ColorFilter, ColorFilter> /*?*/ _colorFilterAnimation;
+  BaseKeyframeAnimation<Color, Color>? _colorAnimation;
+  BaseKeyframeAnimation<int, int>? _opacityAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
   final LottieDrawable lottieDrawable;
 
   FillContent(this.lottieDrawable, this.layer, ShapeFill fill)
@@ -39,11 +39,11 @@ class FillContent implements DrawingContent, KeyPathElementContent {
 
     _path.fillType = fill.fillType;
 
-    _colorAnimation = fill.color.createAnimation();
-    _colorAnimation.addUpdateListener(onValueChanged);
+    _colorAnimation = fill.color!.createAnimation();
+    _colorAnimation!.addUpdateListener(onValueChanged);
     layer.addAnimation(_colorAnimation);
-    _opacityAnimation = fill.opacity.createAnimation();
-    _opacityAnimation.addUpdateListener(onValueChanged);
+    _opacityAnimation = fill.opacity!.createAnimation();
+    _opacityAnimation!.addUpdateListener(onValueChanged);
     layer.addAnimation(_opacityAnimation);
   }
 
@@ -62,21 +62,21 @@ class FillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int? parentAlpha}) {
     if (_hidden) {
       return;
     }
     L.beginSection('FillContent#draw');
-    _paint.color = _colorAnimation.value;
+    _paint.color = _colorAnimation!.value;
     var alpha =
-        ((parentAlpha / 255.0 * _opacityAnimation.value / 100.0) * 255).round();
+        ((parentAlpha! / 255.0 * _opacityAnimation!.value / 100.0) * 255).round();
     _paint.setAlpha(alpha.clamp(0, 255).toInt());
     if (lottieDrawable.antiAliasingSuggested) {
       _paint.isAntiAlias = true;
     }
 
     if (_colorFilterAnimation != null) {
-      _paint.colorFilter = _colorFilterAnimation.value;
+      _paint.colorFilter = _colorFilterAnimation!.value;
     }
 
     _path.reset();
@@ -93,7 +93,7 @@ class FillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  Rect getBounds(Matrix4 parentMatrix, {bool applyParents}) {
+  Rect getBounds(Matrix4 parentMatrix, {bool? applyParents}) {
     _path.reset();
     for (var i = 0; i < _paths.length; i++) {
       _path.addPath(_paths[i].getPath(), Offset.zero,
@@ -114,11 +114,11 @@ class FillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.color) {
-      _colorAnimation.setValueCallback(callback as LottieValueCallback<Color>);
+      _colorAnimation!.setValueCallback(callback as LottieValueCallback<Color>?);
     } else if (property == LottieProperty.opacity) {
-      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>);
+      _opacityAnimation!.setValueCallback(callback as LottieValueCallback<int>?);
     } else if (property == LottieProperty.colorFilter) {
       if (_colorFilterAnimation != null) {
         layer.removeAnimation(_colorFilterAnimation);
@@ -129,7 +129,7 @@ class FillContent implements DrawingContent, KeyPathElementContent {
       } else {
         _colorFilterAnimation = ValueCallbackKeyframeAnimation(
             callback as LottieValueCallback<ColorFilter>);
-        _colorFilterAnimation.addUpdateListener(onValueChanged);
+        _colorFilterAnimation!.addUpdateListener(onValueChanged);
         layer.addAnimation(_colorFilterAnimation);
       }
     }

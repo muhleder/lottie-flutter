@@ -7,7 +7,7 @@ import 'dart_project.dart';
 
 void main() {
   for (var project in getSubOrContainingProjects(Directory.current.path)) {
-    for (var dartFile in project.getDartFiles()) {
+    for (var dartFile in project!.getDartFiles()) {
       try {
         fixFile(dartFile);
       } catch (e, s) {

@@ -6,8 +6,8 @@ import 'animatable_value.dart';
 
 class AnimatableSplitDimensionPathValue
     implements AnimatableValue<Offset, Offset> {
-  final AnimatableDoubleValue _animatableXDimension;
-  final AnimatableDoubleValue _animatableYDimension;
+  final AnimatableDoubleValue? _animatableXDimension;
+  final AnimatableDoubleValue? _animatableYDimension;
 
   AnimatableSplitDimensionPathValue(
       this._animatableXDimension, this._animatableYDimension);
@@ -20,13 +20,13 @@ class AnimatableSplitDimensionPathValue
 
   @override
   bool get isStatic {
-    return _animatableXDimension.isStatic && _animatableYDimension.isStatic;
+    return _animatableXDimension!.isStatic && _animatableYDimension!.isStatic;
   }
 
   @override
   SplitDimensionPathKeyframeAnimation createAnimation() {
     return SplitDimensionPathKeyframeAnimation(
-        _animatableXDimension.createAnimation(),
-        _animatableYDimension.createAnimation());
+        _animatableXDimension!.createAnimation(),
+        _animatableYDimension!.createAnimation());
   }
 }

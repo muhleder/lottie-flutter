@@ -1,18 +1,13 @@
 import 'dart:math';
 import 'dart:ui';
-import 'package:meta/meta.dart';
 import 'path_factory.dart';
 
 Path dashPath(
   Path source, {
-  @required List<double/*!*/> intervals,
-  double phase,
+  required List<double> intervals,
+  double? phase,
 }) {
-  assert(intervals != null);
   assert(intervals.length >= 2);
-  if (source == null) {
-    return null;
-  }
   phase ??= 0;
 
   var dest = PathFactory.create();
@@ -26,7 +21,7 @@ Path dashPath(
 }
 
 Iterable<Rect> _dashes(
-    double length, List<double/*!*/> intervals, double phase) sync* {
+    double length, List<double> intervals, double phase) sync* {
   var intervalLength = intervals.fold<double>(0, (a, b) => a + b);
 
   var distance = 0.0;

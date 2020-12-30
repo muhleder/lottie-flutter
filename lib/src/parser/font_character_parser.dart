@@ -12,12 +12,12 @@ class FontCharacterParser {
   FontCharacterParser._();
 
   static FontCharacter parse(JsonReader reader, LottieComposition composition) {
-    var character = '';
+    String? character = '';
     var size = 0.0;
     var width = 0.0;
-    String style;
-    String fontFamily;
-    var shapes = <ShapeGroup>[];
+    String? style;
+    String? fontFamily;
+    var shapes = <ShapeGroup?>[];
 
     reader.beginObject();
     while (reader.hasNext()) {
@@ -45,7 +45,7 @@ class FontCharacterParser {
                 reader.beginArray();
                 while (reader.hasNext()) {
                   shapes.add(ContentModelParser.parse(reader, composition)
-                      as ShapeGroup);
+                      as ShapeGroup?);
                 }
                 reader.endArray();
                 break;
@@ -65,7 +65,7 @@ class FontCharacterParser {
 
     return FontCharacter(
         shapes: shapes,
-        character: character,
+        character: character!,
         size: size,
         width: width,
         style: style,

@@ -8,20 +8,20 @@ import '../layer/base_layer.dart';
 import 'content_model.dart';
 
 class ShapeFill implements ContentModel {
-  final bool/*!*/ fillEnabled;
-  final PathFillType/*!*/ fillType;
-  final String name;
-  final AnimatableColorValue /*?*/ color;
-  final AnimatableIntegerValue /*?*/ opacity;
-  final bool/*!*/ hidden;
+  final bool fillEnabled;
+  final PathFillType fillType;
+  final String? name;
+  final AnimatableColorValue? color;
+  final AnimatableIntegerValue? opacity;
+  final bool hidden;
 
   ShapeFill(
-      {this.fillEnabled,
-      this.fillType,
+      {required this.fillEnabled,
+      required this.fillType,
       this.name,
       this.color,
       this.opacity,
-      this.hidden});
+      required this.hidden});
 
   @override
   Content toContent(LottieDrawable drawable, BaseLayer layer) {

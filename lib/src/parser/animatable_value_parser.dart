@@ -26,61 +26,61 @@ class AnimatableValueParser {
 
   static AnimatableDoubleValue parseFloat(
       JsonReader reader, LottieComposition composition,
-      {bool isDp}) {
+      {bool? isDp}) {
     isDp ??= true;
     return AnimatableDoubleValue.fromKeyframes(parse(
         reader, composition, floatParser,
-        scale: isDp ? window.devicePixelRatio : 1.0));
+        scale: isDp ? window.devicePixelRatio : 1.0)!);
   }
 
   static AnimatableIntegerValue parseInteger(
       JsonReader reader, LottieComposition composition) {
     return AnimatableIntegerValue.fromKeyframes(
-        parse(reader, composition, integerParser));
+        parse(reader, composition, integerParser)!);
   }
 
   static AnimatablePointValue parsePoint(
       JsonReader reader, LottieComposition composition) {
     return AnimatablePointValue.fromKeyframes(parse(
         reader, composition, offsetParser,
-        scale: window.devicePixelRatio));
+        scale: window.devicePixelRatio)!);
   }
 
   static AnimatableScaleValue parseScale(
       JsonReader reader, LottieComposition composition) {
     return AnimatableScaleValue.fromKeyframes(
-        parse(reader, composition, scaleXYParser));
+        parse(reader, composition, scaleXYParser)!);
   }
 
   static AnimatableShapeValue parseShapeData(
       JsonReader reader, LottieComposition composition) {
     return AnimatableShapeValue.fromKeyframes(parse(
         reader, composition, shapeDataParser,
-        scale: window.devicePixelRatio));
+        scale: window.devicePixelRatio)!);
   }
 
   static AnimatableTextFrame parseDocumentData(
       JsonReader reader, LottieComposition composition) {
     return AnimatableTextFrame.fromKeyframes(
-        parse(reader, composition, documentDataParser));
+        parse(reader, composition, documentDataParser)!);
   }
 
   static AnimatableColorValue parseColor(
       JsonReader reader, LottieComposition composition) {
     return AnimatableColorValue.fromKeyframes(
-        parse(reader, composition, colorParser));
+        parse(reader, composition, colorParser)!);
   }
 
   static AnimatableGradientColorValue parseGradientColor(
       JsonReader reader, LottieComposition composition, int points) {
     return AnimatableGradientColorValue.fromKeyframes(
-        parse(reader, composition, GradientColorParser(points).parse));
+        parse(reader, composition, GradientColorParser(points).parse)!);
   }
 
   /// Will return null if the animation can't be played such as if it has expressions.
-  static List<Keyframe<T>> /*?*/ parse<T>(JsonReader reader,
+  static List<Keyframe<T>>? parse<T>(JsonReader reader,
       LottieComposition composition, ValueParser<T> valueParser,
-      {double scale}) {
+      {double? scale}) {
     scale ??= 1.0;
     return KeyframesParser.parse(reader, composition, scale, valueParser);
   }

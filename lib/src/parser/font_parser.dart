@@ -8,9 +8,9 @@ class FontParser {
   FontParser._();
 
   static Font parse(JsonReader reader) {
-    String family;
-    String name;
-    String style;
+    String? family;
+    String? name;
+    String? style;
     var ascent = 0.0;
 
     reader.beginObject();

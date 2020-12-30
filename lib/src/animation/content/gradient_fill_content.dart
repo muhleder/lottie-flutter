@@ -33,9 +33,9 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   final BaseKeyframeAnimation<int, int> _opacityAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _startPointAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _endPointAnimation;
-  BaseKeyframeAnimation<ColorFilter, ColorFilter> /*?*/ _colorFilterAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
   ValueCallbackKeyframeAnimation<List<Color>,
-      List<Color>> /*?*/ _colorCallbackAnimation;
+      List<Color>>? _colorCallbackAnimation;
   final LottieDrawable lottieDrawable;
   final int _cacheSteps;
 
@@ -43,10 +43,10 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
       : _cacheSteps =
             (lottieDrawable.composition.duration.inMilliseconds / _cacheStepsMs)
                 .round(),
-        _colorAnimation = _fill.gradientColor.createAnimation(),
-        _opacityAnimation = _fill.opacity.createAnimation(),
-        _startPointAnimation = _fill.startPoint.createAnimation(),
-        _endPointAnimation = _fill.endPoint.createAnimation() {
+        _colorAnimation = _fill.gradientColor!.createAnimation(),
+        _opacityAnimation = _fill.opacity!.createAnimation(),
+        _startPointAnimation = _fill.startPoint!.createAnimation(),
+        _endPointAnimation = _fill.endPoint!.createAnimation() {
     _path.fillType = _fill.fillType;
     _colorAnimation.addUpdateListener(invalidate);
     layer.addAnimation(_colorAnimation);
@@ -62,7 +62,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  String get name => _fill.name;
+  String? get name => _fill.name;
 
   void invalidate() {
     lottieDrawable.invalidateSelf();
@@ -79,7 +79,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int? parentAlpha}) {
     if (_fill.hidden) {
       return;
     }
@@ -99,11 +99,11 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
     _paint.shader = gradient;
 
     if (_colorFilterAnimation != null) {
-      _paint.colorFilter = _colorFilterAnimation.value;
+      _paint.colorFilter = _colorFilterAnimation!.value;
     }
 
     var alpha =
-        ((parentAlpha / 255.0 * _opacityAnimation.value / 100.0) * 255).round();
+        ((parentAlpha! / 255.0 * _opacityAnimation.value / 100.0) * 255).round();
     _paint.setAlpha(alpha.clamp(0, 255).toInt());
     if (lottieDrawable.antiAliasingSuggested) {
       _paint.isAntiAlias = true;
@@ -117,7 +117,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  Rect getBounds(Matrix4 parentMatrix, {bool applyParents}) {
+  Rect getBounds(Matrix4 parentMatrix, {bool? applyParents}) {
     _path.reset();
     for (var i = 0; i < _paths.length; i++) {
       _path.addPath(_paths[i].getPath(), Offset.zero,
@@ -192,7 +192,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
 
   List<Color> _applyDynamicColorsIfNeeded(List<Color> colors) {
     if (_colorCallbackAnimation != null) {
-      var dynamicColors = _colorCallbackAnimation.value;
+      var dynamicColors = _colorCallbackAnimation!.value;
       if (colors.length == dynamicColors.length) {
         for (var i = 0; i < colors.length; i++) {
           colors[i] = dynamicColors[i];
@@ -215,9 +215,9 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.opacity) {
-      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>);
+      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>?);
     } else if (property == LottieProperty.colorFilter) {
       if (_colorFilterAnimation != null) {
         layer.removeAnimation(_colorFilterAnimation);
@@ -228,7 +228,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
       } else {
         _colorFilterAnimation = ValueCallbackKeyframeAnimation(
             callback as LottieValueCallback<ColorFilter>);
-        _colorFilterAnimation.addUpdateListener(invalidate);
+        _colorFilterAnimation!.addUpdateListener(invalidate);
         layer.addAnimation(_colorFilterAnimation);
       }
     } else if (property == LottieProperty.gradientColor) {
@@ -241,7 +241,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
       } else {
         _colorCallbackAnimation = ValueCallbackKeyframeAnimation(
             callback as LottieValueCallback<List<Color>>);
-        _colorCallbackAnimation.addUpdateListener(invalidate);
+        _colorCallbackAnimation!.addUpdateListener(invalidate);
         layer.addAnimation(_colorCallbackAnimation);
       }
     }

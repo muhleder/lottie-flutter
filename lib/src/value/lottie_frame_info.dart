@@ -1,7 +1,7 @@
 /// Data class for use with {@link LottieValueCallback}.
 class LottieFrameInfo<T> {
   final double startFrame;
-  final double endFrame;
+  final double? endFrame;
   final T startValue;
   final T endValue;
   final double linearKeyframeProgress;

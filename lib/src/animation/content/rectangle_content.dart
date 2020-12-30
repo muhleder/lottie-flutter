@@ -21,7 +21,7 @@ class RectangleContent implements KeyPathElementContent, PathContent {
   final _path = PathFactory.create();
 
   @override
-  final String name;
+  final String? name;
   final bool _hidden;
   final LottieDrawable lottieDrawable;
   final BaseKeyframeAnimation<Object, Offset> _positionAnimation;
@@ -81,8 +81,7 @@ class RectangleContent implements KeyPathElementContent, PathContent {
     var size = _sizeAnimation.value;
     var halfWidth = size.dx / 2.0;
     var halfHeight = size.dy / 2.0;
-    var radius =
-        _cornerRadiusAnimation == null ? 0.0 : _cornerRadiusAnimation.value;
+    var radius = _cornerRadiusAnimation.value;
     var maxRadius = min(halfWidth, halfHeight);
     if (radius > maxRadius) {
       radius = maxRadius;
@@ -164,15 +163,15 @@ class RectangleContent implements KeyPathElementContent, PathContent {
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.rectangleSize) {
-      _sizeAnimation.setValueCallback(callback as LottieValueCallback<Offset>);
+      _sizeAnimation.setValueCallback(callback as LottieValueCallback<Offset>?);
     } else if (property == LottieProperty.position) {
       _positionAnimation
-          .setValueCallback(callback as LottieValueCallback<Offset>);
+          .setValueCallback(callback as LottieValueCallback<Offset>?);
     } else if (property == LottieProperty.cornerRadius) {
       _cornerRadiusAnimation
-          .setValueCallback(callback as LottieValueCallback<double>);
+          .setValueCallback(callback as LottieValueCallback<double>?);
     }
   }
 }

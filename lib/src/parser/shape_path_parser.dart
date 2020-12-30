@@ -11,9 +11,9 @@ class ShapePathParser {
   ShapePathParser._();
 
   static ShapePath parse(JsonReader reader, LottieComposition composition) {
-    String name;
+    String? name;
     var ind = 0;
-    AnimatableShapeValue shape;
+    AnimatableShapeValue? shape;
     var hidden = false;
 
     while (reader.hasNext()) {

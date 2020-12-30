@@ -6,7 +6,7 @@ import 'base_keyframe_animation.dart';
 class MaskKeyframeAnimation {
   final maskAnimations = <BaseKeyframeAnimation<ShapeData, Path>>[];
   final opacityAnimations = <BaseKeyframeAnimation<int, int>>[];
-  final List<Mask>/*!*/ masks;
+  final List<Mask> masks;
 
   MaskKeyframeAnimation(this.masks) {
     for (var mask in masks) {

@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:meta/meta.dart';
 import 'moshi/json_reader.dart';
 
 class JsonUtils {
@@ -15,7 +14,7 @@ class JsonUtils {
     return Color.fromARGB(255, r, g, b);
   }
 
-  static List<Offset> jsonToPoints(JsonReader reader, double scale) {
+  static List<Offset> jsonToPoints(JsonReader reader, double? scale) {
     var points = <Offset>[];
 
     reader.beginArray();
@@ -28,12 +27,12 @@ class JsonUtils {
     return points;
   }
 
-  static Offset jsonToPoint(JsonReader reader, double scale) {
+  static Offset jsonToPoint(JsonReader reader, double? scale) {
     switch (reader.peek()) {
       case Token.number:
-        return _jsonNumbersToPoint(reader, scale);
+        return _jsonNumbersToPoint(reader, scale!);
       case Token.beginArray:
-        return _jsonArrayToPoint(reader, scale);
+        return _jsonArrayToPoint(reader, scale!);
       case Token.beginObject:
         return _jsonObjectToPoint(reader, scale: scale);
       default:
@@ -66,7 +65,7 @@ class JsonUtils {
   static final JsonReaderOptions _pointNames = JsonReaderOptions.of(['x', 'y']);
 
   static Offset _jsonObjectToPoint(JsonReader reader,
-      {@required double scale}) {
+      {required double? scale}) {
     var x = 0.0;
     var y = 0.0;
     reader.beginObject();
@@ -84,7 +83,7 @@ class JsonUtils {
       }
     }
     reader.endObject();
-    return Offset(x * scale, y * scale);
+    return Offset(x * scale!, y * scale);
   }
 
   static double valueFromObject(JsonReader reader) {

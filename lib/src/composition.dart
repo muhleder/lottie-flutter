@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:archive/archive.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart' as p;
 import 'frame_rate.dart';
@@ -45,13 +46,13 @@ void internalInit(
 }
 
 class LottieComposition {
-  static Future<LottieComposition> fromByteData(ByteData data, {String name}) {
+  static Future<LottieComposition> fromByteData(ByteData data, {String? name}) {
     return fromBytes(data.buffer.asUint8List(), name: name);
   }
 
   static Future<LottieComposition> fromBytes(Uint8List bytes,
-      {String name}) async {
-    Archive archive;
+      {String? name}) async {
+    Archive? archive;
     if (bytes[0] == 0x50 && bytes[1] == 0x4B) {
       archive = ZipDecoder().decodeBytes(bytes);
       var jsonFile = archive.files.firstWhere((e) => e.name.endsWith('.json'));
@@ -63,10 +64,9 @@ class LottieComposition {
 
     if (archive != null) {
       for (var image in composition.images.values) {
-        var imagePath = p.posix.join(image.dirName, image.fileName);
-        var found = archive.files.firstWhere(
-            (f) => f.name.toLowerCase() == imagePath.toLowerCase(),
-            orElse: () => null);
+        var imagePath = p.posix.join(image.dirName!, image.fileName);
+        var found = archive.files.firstWhereOrNull(
+            (f) => f.name.toLowerCase() == imagePath.toLowerCase());
         if (found != null) {
           image.loadedImage = await loadImage(
               composition, image, MemoryImage(found.content as Uint8List));
@@ -79,23 +79,23 @@ class LottieComposition {
 
   LottieComposition._(this.name);
 
-  final String name;
+  final String? name;
   final _performanceTracker = PerformanceTracker();
   // This is stored as a set to avoid duplicates.
   final _warnings = <String>{};
-  Map<String, List<Layer>> _precomps;
-  Map<String, LottieImageAsset> _images;
+  late Map<String, List<Layer>> _precomps;
+  late Map<String, LottieImageAsset> _images;
 
   /// Map of font names to fonts */
-  Map<String, Font> _fonts;
-  List<Marker> _markers;
-  Map<int, FontCharacter> _characters;
-  Map<int, Layer> _layerMap;
-  List<Layer> _layers;
-  Rectangle<int> _bounds;
-  double _startFrame;
-  double _endFrame;
-  double _frameRate;
+  late Map<String, Font> _fonts;
+  late List<Marker> _markers;
+  late Map<int, FontCharacter> _characters;
+  late Map<int, Layer> _layerMap;
+  late List<Layer> _layers;
+  late Rectangle<int> _bounds;
+  late double _startFrame;
+  late double _endFrame;
+  late double _frameRate;
 
   /// Used to determine if an animation can be drawn with hardware acceleration.
   bool hasDashPattern = false;
@@ -106,7 +106,7 @@ class LottieComposition {
   int _maskAndMatteCount = 0;
 
   void addWarning(String warning) {
-    var prefix = name != null && name.isNotEmpty ? '$name: ' : '';
+    var prefix = name != null && name!.isNotEmpty ? '$name: ' : '';
     logger.warning('$prefix$warning');
     _warnings.add(warning);
   }
@@ -127,7 +127,7 @@ class LottieComposition {
 
   PerformanceTracker get performanceTracker => _performanceTracker;
 
-  Layer layerModelForId(int id) {
+  Layer? layerModelForId(int id) {
     return _layerMap[id];
   }
 
@@ -147,7 +147,7 @@ class LottieComposition {
 
   List<Layer> get layers => _layers;
 
-  List<Layer> /*?*/ getPrecomps(String id) {
+  List<Layer>? getPrecomps(String? id) {
     return _precomps[id];
   }
 
@@ -157,7 +157,7 @@ class LottieComposition {
 
   List<Marker> get markers => _markers;
 
-  Marker /*?*/ getMarker(String markerName) {
+  Marker? getMarker(String markerName) {
     for (var i = 0; i < _markers.length; i++) {
       var marker = _markers[i];
       if (marker.matchesName(markerName)) {
@@ -180,8 +180,8 @@ class LottieComposition {
   }
 
   /// Returns a "rounded" progress value according to the frameRate
-  double roundProgress(double progress, {@required FrameRate frameRate}) {
-    num fps;
+  double roundProgress(double progress, {required FrameRate frameRate}) {
+    num? fps;
     if (frameRate == FrameRate.max) {
       return progress;
     } else if (frameRate == FrameRate.composition) {

@@ -11,16 +11,16 @@ import 'base_stroke_content.dart';
 
 class StrokeContent extends BaseStrokeContent {
   @override
-  final String name;
-  final bool _hidden;
+  final String? name;
+  final bool? _hidden;
   final BaseKeyframeAnimation<Color, Color> _colorAnimation;
-  BaseKeyframeAnimation<ColorFilter, ColorFilter> /*?*/ _colorFilterAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
 
   StrokeContent(
       final LottieDrawable lottieDrawable, BaseLayer layer, ShapeStroke stroke)
       : name = stroke.name,
         _hidden = stroke.hidden,
-        _colorAnimation = stroke.color.createAnimation(),
+        _colorAnimation = stroke.color!.createAnimation(),
         super(lottieDrawable, layer,
             cap: lineCapTypeToPaintCap(stroke.capType),
             join: lineJoinTypeToPaintJoin(stroke.joinType),
@@ -34,22 +34,23 @@ class StrokeContent extends BaseStrokeContent {
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int parentAlpha}) {
-    if (_hidden) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix,
+      {int? parentAlpha}) {
+    if (_hidden!) {
       return;
     }
     paint.color = _colorAnimation.value.withAlpha(paint.color.alpha);
     if (_colorFilterAnimation != null) {
-      paint.colorFilter = _colorFilterAnimation.value;
+      paint.colorFilter = _colorFilterAnimation!.value;
     }
-    super.draw(canvas, size, parentMatrix, parentAlpha: parentAlpha);
+    super.draw(canvas, size, parentMatrix, parentAlpha: parentAlpha!);
   }
 
   @override
-  void addValueCallback<T>(T property, LottieValueCallback<T> /*?*/ callback) {
+  void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     super.addValueCallback(property, callback);
     if (property == LottieProperty.strokeColor) {
-      _colorAnimation.setValueCallback(callback as LottieValueCallback<Color>);
+      _colorAnimation.setValueCallback(callback as LottieValueCallback<Color>?);
     } else if (property == LottieProperty.colorFilter) {
       if (_colorFilterAnimation != null) {
         layer.removeAnimation(_colorFilterAnimation);
@@ -61,7 +62,7 @@ class StrokeContent extends BaseStrokeContent {
         _colorFilterAnimation =
             ValueCallbackKeyframeAnimation<ColorFilter, ColorFilter>(
                 callback as LottieValueCallback<ColorFilter>);
-        _colorFilterAnimation.addUpdateListener(onUpdateListener);
+        _colorFilterAnimation!.addUpdateListener(onUpdateListener);
         layer.addAnimation(_colorAnimation);
       }
     }

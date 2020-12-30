@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'json_utils.dart';
 import 'moshi/json_reader.dart';
 
-Offset offsetParser(JsonReader reader, {double scale}) {
+Offset offsetParser(JsonReader reader, {double? scale}) {
   var token = reader.peek();
   if (token == Token.beginArray) {
     return JsonUtils.jsonToPoint(reader, scale);
@@ -13,7 +13,7 @@ Offset offsetParser(JsonReader reader, {double scale}) {
     // We begin the array to see if we have an array of keyframes but it's just an array
     // of static numbers instead.
     var point =
-        Offset(reader.nextDouble() * scale, reader.nextDouble() * scale);
+        Offset(reader.nextDouble() * scale!, reader.nextDouble() * scale);
     while (reader.hasNext()) {
       reader.skipValue();
     }

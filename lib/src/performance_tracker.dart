@@ -14,7 +14,7 @@ class PerformanceTracker {
       _layerRenderTimes[layerName] = MeanCalculator();
     }
 
-    final calculator = _layerRenderTimes[layerName];
+    final calculator = _layerRenderTimes[layerName]!;
 
     calculator.add(millis);
 
@@ -44,21 +44,16 @@ class PerformanceTracker {
 
     print('[Lottie] Render Times:');
     for (var layer in sortedRenderTimes) {
-      print('[Lottie]\t\t${layer.first}: ${layer.second}ms');
+      print('[Lottie]\t\t${layer!.first}: ${layer.second}ms');
     }
   }
 
-  List<Pair<String, double>> getSortedRenderTimes() {
+  List<Pair<String, double>?> getSortedRenderTimes() {
     if (!enabled) return [];
 
-    final sortedRenderTimes =
-        List<Pair<String, double>>(_layerRenderTimes.length);
-
-    var idx = 0;
-    for (var entry in _layerRenderTimes.entries) {
-      sortedRenderTimes[idx] = Pair(entry.key, entry.value.mean);
-      idx++;
-    }
+    final sortedRenderTimes = _layerRenderTimes.entries
+        .map((e) => Pair(e.key, e.value.mean))
+        .toList();
 
     sortedRenderTimes.sort((p1, p2) => p1.second.compareTo(p2.second));
 
