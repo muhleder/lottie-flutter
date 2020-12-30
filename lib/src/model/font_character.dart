@@ -10,10 +10,10 @@ class FontCharacter {
     return result;
   }
 
-  final List<ShapeGroup> shapes;
-  final String character;
-  final double size;
-  final double width;
+  final List<ShapeGroup> /*!*/ shapes;
+  final String /*!*/ character;
+  final double /*!*/ size;
+  final double /*!*/ width;
   final String style;
   final String fontFamily;
 

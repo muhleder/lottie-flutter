@@ -2,7 +2,7 @@ import 'dart:ui';
 import '../../utils/gamma_evaluator.dart';
 
 class GradientColor {
-  final List<double> positions;
+  final List<double/*!*/> positions;
   final List<Color> colors;
 
   GradientColor(this.positions, this.colors);

@@ -3,10 +3,10 @@ import '../../value/keyframe.dart';
 import 'base_keyframe_animation.dart';
 
 class SplitDimensionPathKeyframeAnimation
-    extends BaseKeyframeAnimation<Offset, Offset> {
+    extends BaseKeyframeAnimation<Offset, Offset/*!*/> {
   Offset _point;
-  final BaseKeyframeAnimation<double, double> _xAnimation;
-  final BaseKeyframeAnimation<double, double> _yAnimation;
+  final BaseKeyframeAnimation<double/*!*/, double/*!*/> _xAnimation;
+  final BaseKeyframeAnimation<double/*!*/, double/*!*/> _yAnimation;
 
   SplitDimensionPathKeyframeAnimation(this._xAnimation, this._yAnimation)
       : super(<Keyframe<Offset>>[]) {
@@ -30,7 +30,7 @@ class SplitDimensionPathKeyframeAnimation
   }
 
   @override
-  Offset getValue(Keyframe<Offset> keyframe, double keyframeProgress) {
+  Offset getValue(Keyframe<Offset>/*!*/ keyframe, double keyframeProgress) {
     return _point;
   }
 }

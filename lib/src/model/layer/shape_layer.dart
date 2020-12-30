@@ -10,7 +10,7 @@ import 'base_layer.dart';
 import 'layer.dart';
 
 class ShapeLayer extends BaseLayer {
-  ContentGroup _contentGroup;
+  /*late*/ ContentGroup /*!*/ _contentGroup;
 
   ShapeLayer(LottieDrawable lottieDrawable, Layer layerModel)
       : super(lottieDrawable, layerModel) {

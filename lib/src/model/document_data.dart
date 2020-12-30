@@ -5,15 +5,15 @@ enum Justification { leftAlign, rightAlign, center }
 class DocumentData {
   final String text;
   final String fontName;
-  final double size;
-  final Justification justification;
-  final int tracking;
-  final double lineHeight;
-  final double baselineShift;
-  final Color color;
-  final Color strokeColor;
-  final double strokeWidth;
-  final bool strokeOverFill;
+  final double /*!*/ size;
+  final Justification /*!*/ justification;
+  final int /*!*/ tracking;
+  final double /*!*/ lineHeight;
+  final double /*!*/ baselineShift;
+  final Color /*!*/ color;
+  final Color /*!*/ strokeColor;
+  final double /*!*/ strokeWidth;
+  final bool /*!*/ strokeOverFill;
 
   DocumentData({
     this.text,

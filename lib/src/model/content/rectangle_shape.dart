@@ -13,7 +13,7 @@ class RectangleShape implements ContentModel {
   final AnimatableValue<Offset, Offset> position;
   final AnimatablePointValue size;
   final AnimatableDoubleValue cornerRadius;
-  final bool hidden;
+  final bool/*!*/ hidden;
 
   RectangleShape(
       {this.name, this.position, this.size, this.cornerRadius, this.hidden});

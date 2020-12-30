@@ -13,7 +13,7 @@ class ShapeTrimPath implements ContentModel {
   final AnimatableDoubleValue start;
   final AnimatableDoubleValue end;
   final AnimatableDoubleValue offset;
-  final bool hidden;
+  final bool/*!*/ hidden;
 
   ShapeTrimPath(
       {this.name, this.type, this.start, this.end, this.offset, this.hidden});

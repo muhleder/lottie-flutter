@@ -5,14 +5,14 @@ import '../../value/lottie_value_callback.dart';
 
 /// @param <K> Keyframe type
 /// @param <A> Animation type
-abstract class BaseKeyframeAnimation<K, A> {
+abstract class BaseKeyframeAnimation<K extends Object/*!*/, A extends Object/*!*/> {
 // This is not a Set because we don't want to create an iterator object on every setProgress.
   final listeners = <void Function()>[];
   bool _isDiscrete = false;
 
   final _KeyframesWrapper<K> _keyframesWrapper;
   double _progress = 0;
-  LottieValueCallback<A> /*?*/ valueCallback;
+  LottieValueCallback<A/*!*/> /*?*/ valueCallback;
 
   A /*?*/ _cachedGetValue;
 
@@ -102,7 +102,7 @@ abstract class BaseKeyframeAnimation<K, A> {
     return _cachedEndProgress;
   }
 
-  A get value {
+  A /*!*/ get value {
     var progress = getInterpolatedCurrentKeyframeProgress();
     if (valueCallback == null &&
         _keyframesWrapper.isCachedValueEnabled(progress)) {
@@ -155,7 +155,7 @@ abstract class _KeyframesWrapper<T> {
 
   bool isValueChanged(double progress);
 
-  Keyframe<T> getCurrentKeyframe();
+  Keyframe<T> /*!*/ getCurrentKeyframe();
 
   double getStartDelayProgress();
 
@@ -240,7 +240,7 @@ class _SingleKeyframeWrapper<T> implements _KeyframesWrapper<T> {
 
 class _KeyframesWrapperImpl<T> implements _KeyframesWrapper<T> {
   final List<Keyframe<T>> keyframes;
-  Keyframe<T> _currentKeyframe;
+  Keyframe<T> /*!*/ _currentKeyframe;
   Keyframe<T> _cachedCurrentKeyframe;
   double _cachedInterpolatedProgress = -1;
 

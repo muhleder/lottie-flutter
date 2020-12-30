@@ -6,12 +6,12 @@ import 'content.dart';
 class TrimPathContent implements Content {
   @override
   final String name;
-  final bool hidden;
+  final bool /*!*/ hidden;
   final _listeners = <void Function()>[];
   final ShapeTrimPathType type;
-  final BaseKeyframeAnimation<dynamic, double> start;
-  final BaseKeyframeAnimation<dynamic, double> end;
-  final BaseKeyframeAnimation<dynamic, double> offset;
+  final BaseKeyframeAnimation<Object, double /*!*/ > start;
+  final BaseKeyframeAnimation<Object, double /*!*/ > end;
+  final BaseKeyframeAnimation<Object, double /*!*/ > offset;
 
   TrimPathContent(BaseLayer layer, ShapeTrimPath trimPath)
       : name = trimPath.name,

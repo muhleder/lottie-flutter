@@ -13,14 +13,14 @@ import 'gradient_type.dart';
 class GradientFill implements ContentModel {
   final String name;
   final GradientType gradientType;
-  final PathFillType fillType;
+  final PathFillType /*!*/ fillType;
   final AnimatableGradientColorValue gradientColor;
   final AnimatableIntegerValue opacity;
   final AnimatablePointValue startPoint;
   final AnimatablePointValue endPoint;
   final AnimatableDoubleValue /*?*/ highlightLength;
   final AnimatableDoubleValue /*?*/ highlightAngle;
-  final bool hidden;
+  final bool /*!*/ hidden;
 
   GradientFill({
     this.name,

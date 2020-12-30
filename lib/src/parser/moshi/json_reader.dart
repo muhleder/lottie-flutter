@@ -156,9 +156,9 @@ abstract class JsonReader {
   // grow itself up to 256 levels of nesting including the top-level document. Deeper nesting is
   // prone to trigger StackOverflowErrors.
   int stackSize = 0;
-  List<int> scopes;
-  List<String> pathNames;
-  List<int> pathIndices;
+  List<int>/*!*/ scopes;
+  List<String>/*!*/ pathNames;
+  List<int>/*!*/ pathIndices;
 
   /// True to accept non-spec compliant JSON.
   bool lenient = false;

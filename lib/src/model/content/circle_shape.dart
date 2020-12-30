@@ -9,10 +9,10 @@ import 'content_model.dart';
 
 class CircleShape implements ContentModel {
   final String name;
-  final AnimatableValue<Offset, Offset> position;
-  final AnimatablePointValue size;
-  final bool isReversed;
-  final bool hidden;
+  final AnimatableValue<Offset, Offset> /*!*/ position;
+  final AnimatablePointValue /*!*/ size;
+  final bool /*!*/ isReversed;
+  final bool /*!*/ hidden;
 
   CircleShape(
       {this.name, this.position, this.size, this.isReversed, this.hidden});

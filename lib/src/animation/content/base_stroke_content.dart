@@ -31,15 +31,17 @@ abstract class BaseStrokeContent
   final LottieDrawable lottieDrawable;
   final BaseLayer layer;
   final List<_PathGroup> _pathGroups = <_PathGroup>[];
-  final List<double> _dashPatternValues;
+  final List<double /*!*/ > _dashPatternValues;
   final Paint paint = Paint()..style = PaintingStyle.stroke;
 
-  final BaseKeyframeAnimation<dynamic, double> _widthAnimation;
-  final BaseKeyframeAnimation<dynamic, int> _opacityAnimation;
-  final List<BaseKeyframeAnimation<dynamic, double>> _dashPatternAnimations;
-  final BaseKeyframeAnimation<dynamic,
-      double> /*?*/ _dashPatternOffsetAnimation;
-  BaseKeyframeAnimation<ColorFilter, ColorFilter> /*?*/ _colorFilterAnimation;
+  final BaseKeyframeAnimation<Object, double /*!*/ > _widthAnimation;
+  final BaseKeyframeAnimation<Object, int /*!*/ > _opacityAnimation;
+  final List<BaseKeyframeAnimation<Object, double /*!*/ >>
+      _dashPatternAnimations;
+  final BaseKeyframeAnimation<Object,
+      double /*!*/ > /*?*/ _dashPatternOffsetAnimation;
+  BaseKeyframeAnimation<ColorFilter,
+      ColorFilter /*!*/ > /*?*/ _colorFilterAnimation;
 
   BaseStrokeContent(this.lottieDrawable, this.layer,
       {StrokeCap cap,
@@ -47,7 +49,7 @@ abstract class BaseStrokeContent
       double miterLimit,
       AnimatableIntegerValue opacity,
       AnimatableDoubleValue width,
-      List<AnimatableDoubleValue> dashPattern,
+      List<AnimatableDoubleValue /*!*/ > dashPattern,
       AnimatableDoubleValue dashOffset})
       : _widthAnimation = width.createAnimation(),
         _opacityAnimation = opacity.createAnimation(),
@@ -119,7 +121,8 @@ abstract class BaseStrokeContent
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix,
+      {int /*!*/ parentAlpha}) {
     L.beginSection('StrokeContent#draw');
     if (parentMatrix.hasZeroScaleAxis) {
       L.endSection('StrokeContent#draw');
@@ -229,7 +232,7 @@ abstract class BaseStrokeContent
   }
 
   @override
-  Rect getBounds(Matrix4 parentMatrix, {bool applyParents}) {
+  Rect getBounds(Matrix4 parentMatrix, {bool/*!*/ applyParents}) {
     L.beginSection('StrokeContent#getBounds');
     _path.reset();
     for (var i = 0; i < _pathGroups.length; i++) {

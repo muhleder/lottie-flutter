@@ -13,28 +13,28 @@ enum LayerType { preComp, solid, image, nullLayer, shap, text, unknown }
 enum MatteType { none, add, invert, unknown }
 
 class Layer {
-  final List<ContentModel> shapes;
-  final LottieComposition composition;
-  final String name;
-  final int id;
+  final List<ContentModel> /*!*/ shapes;
+  final LottieComposition /*!*/ composition;
+  final String /*!*/ name;
+  final int /*!*/ id;
   final LayerType layerType;
-  final int parentId;
+  final int /*!*/ parentId;
   final String refId;
-  final List<Mask> masks;
+  final List<Mask> /*!*/ masks;
   final AnimatableTransform transform;
-  final int solidWidth;
-  final int solidHeight;
-  final Color solidColor;
+  final int /*!*/ solidWidth;
+  final int /*!*/ solidHeight;
+  final Color /*!*/ solidColor;
   final double timeStretch;
-  final double startFrame;
-  final int preCompWidth;
-  final int preCompHeight;
+  final double /*!*/ startFrame;
+  final int /*!*/ preCompWidth;
+  final int /*!*/ preCompHeight;
   final AnimatableTextFrame /*?*/ text;
   final AnimatableTextProperties /*?*/ textProperties;
-  final List<Keyframe<double>> inOutKeyframes;
-  final MatteType matteType;
+  final List<Keyframe<double>> /*!*/ inOutKeyframes;
+  final MatteType /*!*/ matteType;
   final AnimatableDoubleValue /*?*/ timeRemapping;
-  final bool isHidden;
+  final bool /*!*/ isHidden;
 
   double get startProgress {
     return startFrame / composition.durationFrames;

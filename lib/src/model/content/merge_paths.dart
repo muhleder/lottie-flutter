@@ -8,9 +8,9 @@ import 'content_model.dart';
 enum MergePathsMode { merge, add, substract, intersect, excludeIntersections }
 
 class MergePaths implements ContentModel {
-  final String name;
-  final MergePathsMode mode;
-  final bool hidden;
+  final String/*!*/ name;
+  final MergePathsMode/*!*/ mode;
+  final bool/*!*/ hidden;
 
   MergePaths({this.name, this.mode, this.hidden});
 

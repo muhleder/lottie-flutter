@@ -24,8 +24,8 @@ class EllipseContent implements PathContent, KeyPathElementContent {
   @override
   final String name;
   final LottieDrawable lottieDrawable;
-  final BaseKeyframeAnimation<dynamic, Offset> _sizeAnimation;
-  final BaseKeyframeAnimation<dynamic, Offset> _positionAnimation;
+  final BaseKeyframeAnimation<Object, Offset> _sizeAnimation;
+  final BaseKeyframeAnimation<Object, Offset> _positionAnimation;
   final CircleShape _circleShape;
 
   final CompoundTrimPathContent _trimPaths = CompoundTrimPathContent();

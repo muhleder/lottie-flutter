@@ -29,14 +29,14 @@ class PolystarShapeType {
 class PolystarShape implements ContentModel {
   final String name;
   final PolystarShapeType type;
-  final AnimatableDoubleValue points;
-  final AnimatableValue<Offset, Offset> position;
-  final AnimatableDoubleValue rotation;
-  final AnimatableDoubleValue innerRadius;
-  final AnimatableDoubleValue outerRadius;
-  final AnimatableDoubleValue innerRoundedness;
-  final AnimatableDoubleValue outerRoundedness;
-  final bool hidden;
+  final AnimatableDoubleValue/*!*/ points;
+  final AnimatableValue<Offset, Offset>/*!*/ position;
+  final AnimatableDoubleValue/*!*/ rotation;
+  final AnimatableDoubleValue/*?*/ innerRadius;
+  final AnimatableDoubleValue/*!*/ outerRadius;
+  final AnimatableDoubleValue/*?*/ innerRoundedness;
+  final AnimatableDoubleValue/*!*/ outerRoundedness;
+  final bool/*!*/ hidden;
 
   PolystarShape({
     this.name,

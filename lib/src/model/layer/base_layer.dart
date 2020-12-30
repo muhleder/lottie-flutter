@@ -66,7 +66,7 @@ abstract class BaseLayer implements DrawingContent, KeyPathElement {
   final Layer layerModel;
 
   MaskKeyframeAnimation /*?*/ _mask;
-  DoubleKeyframeAnimation _inOutAnimation;
+  /*late*/ DoubleKeyframeAnimation /*!*/ _inOutAnimation;
   BaseLayer /*?*/ _matteLayer;
 
   /// This should only be used by {@link #buildParentLayerListIfNeeded()}

@@ -29,8 +29,6 @@ class CompositionLayer extends BaseLayer {
       _timeRemapping = timeRemapping.createAnimation();
       addAnimation(_timeRemapping);
       _timeRemapping.addUpdateListener(invalidateSelf);
-    } else {
-      _timeRemapping = null;
     }
 
     var layerMap = <int, BaseLayer>{};

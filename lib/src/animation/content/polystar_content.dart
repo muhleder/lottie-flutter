@@ -28,13 +28,13 @@ class PolystarContent implements PathContent, KeyPathElementContent {
 
   final LottieDrawable lottieDrawable;
   final PolystarShape _polystarShape;
-  final BaseKeyframeAnimation<dynamic, double> _pointsAnimation;
-  final BaseKeyframeAnimation<dynamic, Offset> _positionAnimation;
-  final BaseKeyframeAnimation<dynamic, double> _rotationAnimation;
-  final BaseKeyframeAnimation<dynamic, double> /*?*/ _innerRadiusAnimation;
-  final BaseKeyframeAnimation<dynamic, double> _outerRadiusAnimation;
-  final BaseKeyframeAnimation<dynamic, double> /*?*/ _innerRoundednessAnimation;
-  final BaseKeyframeAnimation<dynamic, double> _outerRoundednessAnimation;
+  final BaseKeyframeAnimation<Object, double> _pointsAnimation;
+  final BaseKeyframeAnimation<Object, Offset> _positionAnimation;
+  final BaseKeyframeAnimation<Object, double> _rotationAnimation;
+  final BaseKeyframeAnimation<Object, double> /*?*/ _innerRadiusAnimation;
+  final BaseKeyframeAnimation<Object, double> _outerRadiusAnimation;
+  final BaseKeyframeAnimation<Object, double> /*?*/ _innerRoundednessAnimation;
+  final BaseKeyframeAnimation<Object, double> _outerRoundednessAnimation;
 
   final _trimPaths = CompoundTrimPathContent();
   bool _isPathValid = false;

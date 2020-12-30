@@ -11,7 +11,7 @@ class Repeater implements ContentModel {
   final AnimatableDoubleValue copies;
   final AnimatableDoubleValue offset;
   final AnimatableTransform transform;
-  final bool hidden;
+  final bool/*!*/ hidden;
 
   Repeater({this.name, this.copies, this.offset, this.transform, this.hidden});
 

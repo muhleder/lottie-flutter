@@ -24,9 +24,9 @@ class RectangleContent implements KeyPathElementContent, PathContent {
   final String name;
   final bool _hidden;
   final LottieDrawable lottieDrawable;
-  final BaseKeyframeAnimation<dynamic, Offset> _positionAnimation;
-  final BaseKeyframeAnimation<dynamic, Offset> _sizeAnimation;
-  final BaseKeyframeAnimation<dynamic, double> _cornerRadiusAnimation;
+  final BaseKeyframeAnimation<Object, Offset> _positionAnimation;
+  final BaseKeyframeAnimation<Object, Offset> _sizeAnimation;
+  final BaseKeyframeAnimation<Object, double> _cornerRadiusAnimation;
 
   final CompoundTrimPathContent _trimPaths = CompoundTrimPathContent();
   bool _isPathValid = false;

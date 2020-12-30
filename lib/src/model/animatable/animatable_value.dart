@@ -4,5 +4,5 @@ import '../../value/keyframe.dart';
 abstract class AnimatableValue<K, A> {
   List<Keyframe<K>> get keyframes;
   bool get isStatic;
-  BaseKeyframeAnimation<K, A> createAnimation();
+  BaseKeyframeAnimation<K/*!*/, A/*!*/> createAnimation();
 }

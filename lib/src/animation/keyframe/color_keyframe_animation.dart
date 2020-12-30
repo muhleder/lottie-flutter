@@ -3,11 +3,11 @@ import '../../utils/gamma_evaluator.dart';
 import '../../value/keyframe.dart';
 import 'keyframe_animation.dart';
 
-class ColorKeyframeAnimation extends KeyframeAnimation<Color> {
+class ColorKeyframeAnimation extends KeyframeAnimation<Color/*!*/> {
   ColorKeyframeAnimation(List<Keyframe<Color>> keyframes) : super(keyframes);
 
   @override
-  Color getValue(Keyframe<Color> keyframe, double keyframeProgress) {
+  Color getValue(Keyframe<Color/*!*/> keyframe, double keyframeProgress) {
     if (keyframe.startValue == null || keyframe.endValue == null) {
       throw Exception('Missing values for keyframe.');
     }

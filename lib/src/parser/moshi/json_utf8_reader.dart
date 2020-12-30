@@ -58,7 +58,7 @@ class JsonUtf8Reader extends JsonReader {
 
   /// A peeked value that was composed entirely of digits with an optional
   /// leading dash. Positive values may not have a leading 0.
-  int _peekedLong;
+  /*late*/ int /*!*/ _peekedLong;
 
   /// The number of characters in a peeked number literal.
   int _peekedNumberLength;

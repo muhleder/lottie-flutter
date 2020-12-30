@@ -102,7 +102,7 @@ class ContentGroup implements DrawingContent, PathContent, KeyPathElement {
     }
   }
 
-  List<PathContent> getPathList() {
+  List<PathContent>/*!*/ getPathList() {
     if (_pathContents == null) {
       _pathContents = <PathContent>[];
       for (var i = 0; i < _contents.length; i++) {
@@ -199,7 +199,7 @@ class ContentGroup implements DrawingContent, PathContent, KeyPathElement {
   }
 
   @override
-  Rect getBounds(Matrix4 parentMatrix, {bool applyParents}) {
+  Rect getBounds(Matrix4 parentMatrix, {bool/*!*/ applyParents}) {
     _matrix.set(parentMatrix);
     if (_transformAnimation != null) {
       _matrix.preConcat(_transformAnimation.getMatrix());

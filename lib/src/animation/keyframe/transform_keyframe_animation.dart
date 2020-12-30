@@ -34,21 +34,21 @@ class TransformKeyframeAnimation {
   final Matrix4 _skewMatrix2;
   final Matrix4 _skewMatrix3;
 
-  BaseKeyframeAnimation<Offset, Offset> /*?*/ _anchorPoint;
-  BaseKeyframeAnimation<Offset, Offset> /*?*/ _position;
-  BaseKeyframeAnimation<Offset, Offset> /*?*/ _scale;
-  BaseKeyframeAnimation<double, double> /*?*/ _rotation;
+  BaseKeyframeAnimation<Offset/*!*/, Offset/*!*/> /*?*/ _anchorPoint;
+  BaseKeyframeAnimation<Offset/*!*/, Offset/*!*/> /*?*/ _position;
+  BaseKeyframeAnimation<Offset, Offset/*!*/> /*?*/ _scale;
+  BaseKeyframeAnimation<double/*!*/, double/*!*/> /*?*/ _rotation;
   DoubleKeyframeAnimation /*?*/ _skew;
   DoubleKeyframeAnimation /*?*/ _skewAngle;
 
-  BaseKeyframeAnimation<int, int> /*?*/ _opacity;
-  BaseKeyframeAnimation<int, int> /*?*/ get opacity => _opacity;
+  BaseKeyframeAnimation<int/*!*/, int/*!*/> /*?*/ _opacity;
+  BaseKeyframeAnimation<int/*!*/, int/*!*/> /*?*/ get opacity => _opacity;
 
-  BaseKeyframeAnimation<double, double> /*?*/ _startOpacity;
-  BaseKeyframeAnimation<double, double> /*?*/ get startOpacity => _startOpacity;
+  BaseKeyframeAnimation<double/*!*/, double/*!*/> /*?*/ _startOpacity;
+  BaseKeyframeAnimation<double/*!*/, double/*!*/> /*?*/ get startOpacity => _startOpacity;
 
-  BaseKeyframeAnimation<double, double> /*?*/ _endOpacity;
-  BaseKeyframeAnimation<double, double> /*?*/ get endOpacity => _endOpacity;
+  BaseKeyframeAnimation<double/*!*/, double/*!*/> /*?*/ _endOpacity;
+  BaseKeyframeAnimation<double/*!*/, double/*!*/> /*?*/ get endOpacity => _endOpacity;
 
   void addAnimationsToLayer(BaseLayer layer) {
     layer.addAnimation(_opacity);

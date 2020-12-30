@@ -10,9 +10,9 @@ enum MaskMode {
 }
 
 class Mask {
-  final MaskMode maskMode;
-  final AnimatableShapeValue maskPath;
-  final AnimatableIntegerValue opacity;
+  final MaskMode/*!*/ maskMode;
+  final AnimatableShapeValue/*!*/ maskPath;
+  final AnimatableIntegerValue/*!*/ opacity;
   final bool isInverted;
 
   Mask(

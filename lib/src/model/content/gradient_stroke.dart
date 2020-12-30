@@ -20,10 +20,10 @@ class GradientStroke implements ContentModel {
   final AnimatableDoubleValue width;
   final LineCapType capType;
   final LineJoinType joinType;
-  final double miterLimit;
-  final List<AnimatableDoubleValue> lineDashPattern;
+  final double /*!*/ miterLimit;
+  final List<AnimatableDoubleValue /*!*/ > lineDashPattern;
   final AnimatableDoubleValue /*?*/ dashOffset;
-  final bool hidden;
+  final bool /*!*/ hidden;
 
   GradientStroke({
     this.name,

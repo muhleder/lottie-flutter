@@ -4,7 +4,7 @@ class Font {
   final String family;
   final String name;
   final String style;
-  final double ascent;
+  final double /*!*/ ascent;
 
   Font(
       {@required this.family,

@@ -25,7 +25,7 @@ class GammaEvaluator {
         : pow((srgb + 0.055) / 1.055, 2.4).toDouble();
   }
 
-  static Color evaluate(double fraction, Color startColor, Color endColor) {
+  static Color/*!*/ evaluate(double fraction, Color/*!*/ startColor, Color/*!*/ endColor) {
     if (startColor == endColor) {
       return startColor;
     }

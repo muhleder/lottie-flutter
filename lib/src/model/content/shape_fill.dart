@@ -8,12 +8,12 @@ import '../layer/base_layer.dart';
 import 'content_model.dart';
 
 class ShapeFill implements ContentModel {
-  final bool fillEnabled;
-  final PathFillType fillType;
+  final bool/*!*/ fillEnabled;
+  final PathFillType/*!*/ fillType;
   final String name;
   final AnimatableColorValue /*?*/ color;
   final AnimatableIntegerValue /*?*/ opacity;
-  final bool hidden;
+  final bool/*!*/ hidden;
 
   ShapeFill(
       {this.fillEnabled,

@@ -25,7 +25,7 @@ class TextLayer extends BaseLayer {
   final _strokePaint = Paint()..style = PaintingStyle.stroke;
   final _contentsForCharacter = <FontCharacter, List<ContentGroup>>{};
   final TextKeyframeAnimation _textAnimation;
-  final LottieComposition _composition;
+  final LottieComposition /*!*/ _composition;
 
   BaseKeyframeAnimation<Color, Color> /*?*/ _colorAnimation;
 

@@ -7,9 +7,9 @@ import 'content_model.dart';
 
 class ShapePath implements ContentModel {
   final String name;
-  final int index;
+  final int/*!*/ index;
   final AnimatableShapeValue shapePath;
-  final bool hidden;
+  final bool/*!*/ hidden;
 
   ShapePath({this.name, this.index, this.shapePath, this.hidden});
 

@@ -6,5 +6,5 @@ import 'content.dart';
 abstract class DrawingContent extends Content {
   void draw(Canvas canvas, Size canvasSize, Matrix4 parentMatrix,
       {@required int parentAlpha});
-  Rect getBounds(Matrix4 parentMatrix, {@required bool applyParents});
+  Rect getBounds(Matrix4 parentMatrix, {@required bool/*!*/ applyParents});
 }

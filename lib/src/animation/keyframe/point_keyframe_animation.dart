@@ -2,11 +2,11 @@ import 'dart:ui';
 import '../../value/keyframe.dart';
 import 'keyframe_animation.dart';
 
-class PointKeyframeAnimation extends KeyframeAnimation<Offset> {
-  PointKeyframeAnimation(List<Keyframe<Offset>> keyframes) : super(keyframes);
+class PointKeyframeAnimation extends KeyframeAnimation<Offset/*!*/> {
+  PointKeyframeAnimation(List<Keyframe<Offset/*!*/>> keyframes) : super(keyframes);
 
   @override
-  Offset getValue(Keyframe<Offset> keyframe, double keyframeProgress) {
+  Offset/*!*/ getValue(Keyframe<Offset/*!*/> keyframe, double keyframeProgress) {
     if (keyframe.startValue == null || keyframe.endValue == null) {
       throw Exception('Missing values for keyframe.');
     }

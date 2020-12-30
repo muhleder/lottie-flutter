@@ -5,7 +5,7 @@ import 'path_factory.dart';
 
 Path dashPath(
   Path source, {
-  @required List<double> intervals,
+  @required List<double/*!*/> intervals,
   double phase,
 }) {
   assert(intervals != null);
@@ -26,7 +26,7 @@ Path dashPath(
 }
 
 Iterable<Rect> _dashes(
-    double length, List<double> intervals, double phase) sync* {
+    double length, List<double/*!*/> intervals, double phase) sync* {
   var intervalLength = intervals.fold<double>(0, (a, b) => a + b);
 
   var distance = 0.0;
