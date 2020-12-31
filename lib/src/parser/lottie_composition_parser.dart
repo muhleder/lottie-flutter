@@ -62,7 +62,7 @@ class LottieCompositionParser {
           frameRate = reader.nextDouble();
           break;
         case 5:
-          var version = reader.nextString()!;
+          var version = reader.nextString();
           var versions = version.split('.');
           var majorVersion = int.parse(versions[0]);
           var minorVersion = int.parse(versions[1]);

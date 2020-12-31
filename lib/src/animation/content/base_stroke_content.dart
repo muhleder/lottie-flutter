@@ -31,17 +31,14 @@ abstract class BaseStrokeContent
   final LottieDrawable lottieDrawable;
   final BaseLayer layer;
   final List<_PathGroup> _pathGroups = <_PathGroup>[];
-  final List<double > _dashPatternValues;
+  final List<double> _dashPatternValues;
   final Paint paint = Paint()..style = PaintingStyle.stroke;
 
-  final BaseKeyframeAnimation<Object, double > _widthAnimation;
-  final BaseKeyframeAnimation<Object, int > _opacityAnimation;
-  final List<BaseKeyframeAnimation<Object, double >>
-      _dashPatternAnimations;
-  final BaseKeyframeAnimation<Object,
-      double >? _dashPatternOffsetAnimation;
-  BaseKeyframeAnimation<ColorFilter,
-      ColorFilter >? _colorFilterAnimation;
+  final BaseKeyframeAnimation<Object, double> _widthAnimation;
+  final BaseKeyframeAnimation<Object, int> _opacityAnimation;
+  final List<BaseKeyframeAnimation<Object, double>> _dashPatternAnimations;
+  final BaseKeyframeAnimation<Object, double>? _dashPatternOffsetAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter?>? _colorFilterAnimation;
 
   BaseStrokeContent(this.lottieDrawable, this.layer,
       {required StrokeCap cap,
@@ -49,7 +46,7 @@ abstract class BaseStrokeContent
       required double miterLimit,
       required AnimatableIntegerValue opacity,
       required AnimatableDoubleValue width,
-      required List<AnimatableDoubleValue > dashPattern,
+      required List<AnimatableDoubleValue> dashPattern,
       AnimatableDoubleValue? dashOffset})
       : _widthAnimation = width.createAnimation(),
         _opacityAnimation = opacity.createAnimation(),
@@ -300,9 +297,9 @@ abstract class BaseStrokeContent
   @mustCallSuper
   void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.opacity) {
-      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>?);
+      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>);
     } else if (property == LottieProperty.strokeWidth) {
-      _widthAnimation.setValueCallback(callback as LottieValueCallback<double>?);
+      _widthAnimation.setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.colorFilter) {
       if (_colorFilterAnimation != null) {
         layer.removeAnimation(_colorFilterAnimation);
@@ -312,8 +309,8 @@ abstract class BaseStrokeContent
         _colorFilterAnimation = null;
       } else {
         _colorFilterAnimation =
-            ValueCallbackKeyframeAnimation<ColorFilter, ColorFilter>(
-                callback as LottieValueCallback<ColorFilter>);
+            ValueCallbackKeyframeAnimation<ColorFilter, ColorFilter?>(
+                callback as LottieValueCallback<ColorFilter>, null);
         _colorFilterAnimation!.addUpdateListener(onUpdateListener);
         layer.addAnimation(_colorFilterAnimation);
       }

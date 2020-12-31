@@ -44,11 +44,11 @@ class PerformanceTracker {
 
     print('[Lottie] Render Times:');
     for (var layer in sortedRenderTimes) {
-      print('[Lottie]\t\t${layer!.first}: ${layer.second}ms');
+      print('[Lottie]\t\t${layer.first}: ${layer.second}ms');
     }
   }
 
-  List<Pair<String, double>?> getSortedRenderTimes() {
+  List<Pair<String, double>> getSortedRenderTimes() {
     if (!enabled) return [];
 
     final sortedRenderTimes = _layerRenderTimes.entries

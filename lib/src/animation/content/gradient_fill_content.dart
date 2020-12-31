@@ -33,9 +33,9 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   final BaseKeyframeAnimation<int, int> _opacityAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _startPointAnimation;
   final BaseKeyframeAnimation<Offset, Offset> _endPointAnimation;
-  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
-  ValueCallbackKeyframeAnimation<List<Color>,
-      List<Color>>? _colorCallbackAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter?>? _colorFilterAnimation;
+  ValueCallbackKeyframeAnimation<List<Color>, List<Color>>?
+      _colorCallbackAnimation;
   final LottieDrawable lottieDrawable;
   final int _cacheSteps;
 
@@ -79,7 +79,8 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int? parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix,
+      {int? parentAlpha}) {
     if (_fill.hidden) {
       return;
     }
@@ -102,8 +103,8 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
       _paint.colorFilter = _colorFilterAnimation!.value;
     }
 
-    var alpha =
-        ((parentAlpha! / 255.0 * _opacityAnimation.value / 100.0) * 255).round();
+    var alpha = ((parentAlpha! / 255.0 * _opacityAnimation.value / 100.0) * 255)
+        .round();
     _paint.setAlpha(alpha.clamp(0, 255).toInt());
     if (lottieDrawable.antiAliasingSuggested) {
       _paint.isAntiAlias = true;
@@ -217,7 +218,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
   @override
   void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.opacity) {
-      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>?);
+      _opacityAnimation.setValueCallback(callback as LottieValueCallback<int>);
     } else if (property == LottieProperty.colorFilter) {
       if (_colorFilterAnimation != null) {
         layer.removeAnimation(_colorFilterAnimation);
@@ -227,7 +228,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
         _colorFilterAnimation = null;
       } else {
         _colorFilterAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<ColorFilter>);
+            callback as LottieValueCallback<ColorFilter>, null);
         _colorFilterAnimation!.addUpdateListener(invalidate);
         layer.addAnimation(_colorFilterAnimation);
       }
@@ -240,7 +241,7 @@ class GradientFillContent implements DrawingContent, KeyPathElementContent {
         _colorCallbackAnimation = null;
       } else {
         _colorCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<List<Color>>);
+            callback as LottieValueCallback<List<Color>>, <Color>[]);
         _colorCallbackAnimation!.addUpdateListener(invalidate);
         layer.addAnimation(_colorCallbackAnimation);
       }

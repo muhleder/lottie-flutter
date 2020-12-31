@@ -222,7 +222,7 @@ class ContentGroup implements DrawingContent, PathContent, KeyPathElement {
     }
 
     if ('__container' != name) {
-      currentPartialKeyPath = currentPartialKeyPath.addKey(name);
+      currentPartialKeyPath = currentPartialKeyPath.addKey(name!);
 
       if (keyPath.fullyResolvesTo(name, depth)) {
         accumulator.add(currentPartialKeyPath.resolve(this));

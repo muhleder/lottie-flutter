@@ -11,7 +11,7 @@ import 'layer.dart';
 
 class ImageLayer extends BaseLayer {
   final Paint paint = Paint();
-  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter?>? _colorFilterAnimation;
 
   ImageLayer(LottieDrawable lottieDrawable, Layer layerModel)
       : super(lottieDrawable, layerModel);
@@ -64,7 +64,7 @@ class ImageLayer extends BaseLayer {
         _colorFilterAnimation = null;
       } else {
         _colorFilterAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<ColorFilter>);
+            callback as LottieValueCallback<ColorFilter>, null);
       }
     }
   }

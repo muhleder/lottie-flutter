@@ -237,7 +237,7 @@ abstract class JsonReader {
   /// token is a number, this method will return its string form.
   ///
   /// @throws JsonDataException if the next token is not a string or if this reader is closed.
-  String? nextString();
+  String nextString();
 
   /// Returns the {@linkplain Token#BOOLEAN boolean} value of the next token, consuming it.
   ///

@@ -39,6 +39,7 @@ flutter:
     - assets/lottiefiles/
     - assets/Mobilo/
     - assets/Tests/
+    - assets/Tests/images/
     - assets/Logo/
     - assets/Images/
     - assets/Images/WeAccept/

@@ -295,27 +295,27 @@ class PolystarContent implements PathContent, KeyPathElementContent {
   void addValueCallback<T>(T property, LottieValueCallback<T>? callback) {
     if (property == LottieProperty.polystarPoints) {
       _pointsAnimation
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.polystarRotation) {
       _rotationAnimation
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.position) {
       _positionAnimation
-          .setValueCallback(callback as LottieValueCallback<Offset>?);
+          .setValueCallback(callback as LottieValueCallback<Offset>);
     } else if (property == LottieProperty.polystarInnerRadius &&
         _innerRadiusAnimation != null) {
       _innerRadiusAnimation!
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.polystarOuterRadius) {
       _outerRadiusAnimation
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.polystarInnerRoundedness &&
         _innerRoundednessAnimation != null) {
       _innerRoundednessAnimation!
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.polystarOuterRoundedness) {
       _outerRoundednessAnimation
-          .setValueCallback(callback as LottieValueCallback<double>?);
+          .setValueCallback(callback as LottieValueCallback<double>);
     }
   }
 }

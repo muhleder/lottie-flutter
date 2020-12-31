@@ -97,7 +97,7 @@ class MiscUtils {
       KeyPath currentPartialKeyPath,
       KeyPathElementContent content) {
     if (keyPath.fullyResolvesTo(content.name, depth)) {
-      currentPartialKeyPath = currentPartialKeyPath.addKey(content.name);
+      currentPartialKeyPath = currentPartialKeyPath.addKey(content.name!);
       accumulator.add(currentPartialKeyPath.resolve(content));
     }
   }

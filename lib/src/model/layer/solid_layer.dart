@@ -13,7 +13,7 @@ import 'layer.dart';
 class SolidLayer extends BaseLayer {
   final Paint paint = Paint()..style = PaintingStyle.fill;
   final Path path = PathFactory.create();
-  BaseKeyframeAnimation<ColorFilter, ColorFilter>? _colorFilterAnimation;
+  BaseKeyframeAnimation<ColorFilter, ColorFilter?>? _colorFilterAnimation;
 
   SolidLayer(LottieDrawable lottieDrawable, Layer layerModel)
       : super(lottieDrawable, layerModel) {
@@ -73,9 +73,8 @@ class SolidLayer extends BaseLayer {
       if (callback == null) {
         _colorFilterAnimation = null;
       } else {
-        _colorFilterAnimation =
-            ValueCallbackKeyframeAnimation<ColorFilter, ColorFilter>(
-                callback as LottieValueCallback<ColorFilter>);
+        _colorFilterAnimation = ValueCallbackKeyframeAnimation(
+            callback as LottieValueCallback<ColorFilter>, null);
       }
     }
   }

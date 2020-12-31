@@ -31,10 +31,10 @@ import 'key_path_element.dart';
 /// NOTE: Content that are part of merge paths or repeaters cannot currently be resolved with
 /// a {@link KeyPath}. This may be fixed in the future.
 class KeyPath {
-  final List<String?> keys;
+  final List<String> keys;
   KeyPathElement? _resolvedElement;
 
-  KeyPath(List<String?> keys) : keys = keys.toList();
+  KeyPath(List<String> keys) : keys = keys.toList();
 
   /// Copy constructor. Copies keys as well.
   KeyPath.copy(KeyPath keyPath)
@@ -47,7 +47,7 @@ class KeyPath {
   /// This returns a key keypath because during resolution, the full keypath element tree is walked
   /// and if this modified the original copy, it would remain after popping back up the element tree.
   //@CheckResult
-  KeyPath addKey(String? key) {
+  KeyPath addKey(String key) {
     var newKeyPath = KeyPath.copy(this);
     newKeyPath.keys.add(key);
     return newKeyPath;

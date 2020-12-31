@@ -198,7 +198,7 @@ class CompositionLayer extends BaseLayer {
         }
       } else {
         _timeRemapping = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<double>);
+            callback as LottieValueCallback<double>, 1);
         _timeRemapping!.addUpdateListener(invalidateSelf);
         addAnimation(_timeRemapping);
       }

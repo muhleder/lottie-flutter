@@ -406,7 +406,7 @@ class TextLayer extends BaseLayer {
     var size = shapes.length;
     var contents = <ContentGroup>[];
     for (var i = 0; i < size; i++) {
-      var sg = shapes[i]!;
+      var sg = shapes[i];
       contents.add(ContentGroup(lottieDrawable, this, sg));
     }
     _contentsForCharacter[character] = contents;
@@ -425,7 +425,7 @@ class TextLayer extends BaseLayer {
         _colorCallbackAnimation = null;
       } else {
         _colorCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<Color>);
+            callback as LottieValueCallback<Color>, const Color(0));
         _colorCallbackAnimation!.addUpdateListener(invalidateSelf);
         addAnimation(_colorCallbackAnimation);
       }
@@ -438,7 +438,7 @@ class TextLayer extends BaseLayer {
         _strokeColorCallbackAnimation = null;
       } else {
         _strokeColorCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<Color>);
+            callback as LottieValueCallback<Color>, const Color(0));
         _strokeColorCallbackAnimation!.addUpdateListener(invalidateSelf);
         addAnimation(_strokeColorCallbackAnimation);
       }
@@ -451,7 +451,7 @@ class TextLayer extends BaseLayer {
         _strokeWidthCallbackAnimation = null;
       } else {
         _strokeWidthCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<double>);
+            callback as LottieValueCallback<double>, 0);
         _strokeWidthCallbackAnimation!.addUpdateListener(invalidateSelf);
         addAnimation(_strokeWidthCallbackAnimation);
       }
@@ -464,7 +464,7 @@ class TextLayer extends BaseLayer {
         _trackingCallbackAnimation = null;
       } else {
         _trackingCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<double>);
+            callback as LottieValueCallback<double>, 0);
         _trackingCallbackAnimation!.addUpdateListener(invalidateSelf);
         addAnimation(_trackingCallbackAnimation);
       }
@@ -477,7 +477,7 @@ class TextLayer extends BaseLayer {
         _textSizeCallbackAnimation = null;
       } else {
         _textSizeCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<double>);
+            callback as LottieValueCallback<double>, 10);
         _textSizeCallbackAnimation!.addUpdateListener(invalidateSelf);
         addAnimation(_textSizeCallbackAnimation);
       }

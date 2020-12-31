@@ -34,7 +34,7 @@ class NetworkLottie extends LottieProvider {
     });
   }
 
-  Future<ui.Image> _loadImage(Uri jsonUri, LottieComposition composition,
+  Future<ui.Image?> _loadImage(Uri jsonUri, LottieComposition composition,
       LottieImageAsset lottieImage) {
     var imageProvider = getImageProvider(lottieImage);
 

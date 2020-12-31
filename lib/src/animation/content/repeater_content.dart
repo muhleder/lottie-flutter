@@ -104,7 +104,8 @@ class RepeaterContent
   }
 
   @override
-  void draw(Canvas canvas, Size size, Matrix4 parentMatrix, {int? parentAlpha}) {
+  void draw(Canvas canvas, Size size, Matrix4 parentMatrix,
+      {int? parentAlpha}) {
     var copies = _copies.value;
     var offset = _offset.value;
     var startOpacity = _transform.startOpacity!.value / 100.0;
@@ -141,9 +142,9 @@ class RepeaterContent
     }
 
     if (property == LottieProperty.repeaterCopies) {
-      _copies.setValueCallback(callback as LottieValueCallback<double>?);
+      _copies.setValueCallback(callback as LottieValueCallback<double>);
     } else if (property == LottieProperty.repeaterOffset) {
-      _offset.setValueCallback(callback as LottieValueCallback<double>?);
+      _offset.setValueCallback(callback as LottieValueCallback<double>);
     }
   }
 }

@@ -135,7 +135,7 @@ class LayerParser {
           solidHeight = (reader.nextInt() * window.devicePixelRatio).round();
           break;
         case 7:
-          solidColor = MiscUtils.parseColor(reader.nextString()!,
+          solidColor = MiscUtils.parseColor(reader.nextString(),
               warningCallback: composition.addWarning);
           break;
         case 8:
@@ -191,7 +191,7 @@ class LayerParser {
           break;
         case 13:
           reader.beginArray();
-          var effectNames = <String?>[];
+          var effectNames = <String>[];
           while (reader.hasNext()) {
             reader.beginObject();
             while (reader.hasNext()) {

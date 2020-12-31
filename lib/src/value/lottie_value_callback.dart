@@ -15,12 +15,12 @@ class LottieValueCallback<T> {
   T? _value;
   T? get value => _value;
 
-  T Function(LottieFrameInfo<T?>)? callback;
+  T Function(LottieFrameInfo<T>)? callback;
 
   /// Override this if you haven't set a static value in the constructor or with setValue.
   ///
   /// Return null to resort to the default value.
-  T? getValue(LottieFrameInfo<T?> frameInfo) {
+  T? getValue(LottieFrameInfo<T> frameInfo) {
     if (callback != null) {
       return callback!(frameInfo);
     }
@@ -43,7 +43,7 @@ class LottieValueCallback<T> {
       double linearKeyframeProgress,
       double interpolatedKeyframeProgress,
       double overallProgress) {
-    return getValue(LottieFrameInfo<T?>(
+    return getValue(LottieFrameInfo<T>(
         startFrame,
         endFrame,
         startValue,

@@ -5,7 +5,7 @@ import '../../value/lottie_value_callback.dart';
 
 /// @param <K> Keyframe type
 /// @param <A> Animation type
-abstract class BaseKeyframeAnimation<K extends Object, A extends Object> {
+abstract class BaseKeyframeAnimation<K extends Object, A extends Object?> {
 // This is not a Set because we don't want to create an iterator object on every setProgress.
   final listeners = <void Function()>[];
   bool _isDiscrete = false;
@@ -240,7 +240,7 @@ class _SingleKeyframeWrapper<T> implements _KeyframesWrapper<T> {
 
 class _KeyframesWrapperImpl<T> implements _KeyframesWrapper<T> {
   final List<Keyframe<T>> keyframes;
-  late Keyframe<T> _currentKeyframe;
+  Keyframe<T>? _currentKeyframe;
   Keyframe<T>? _cachedCurrentKeyframe;
   double _cachedInterpolatedProgress = -1;
 
@@ -255,8 +255,8 @@ class _KeyframesWrapperImpl<T> implements _KeyframesWrapper<T> {
 
   @override
   bool isValueChanged(double progress) {
-    if (_currentKeyframe.containsProgress(progress)) {
-      return !_currentKeyframe.isStatic;
+    if (_currentKeyframe!.containsProgress(progress)) {
+      return !_currentKeyframe!.isStatic;
     }
     _currentKeyframe = findKeyframe(progress);
     return true;
@@ -281,7 +281,7 @@ class _KeyframesWrapperImpl<T> implements _KeyframesWrapper<T> {
 
   @override
   Keyframe<T> getCurrentKeyframe() {
-    return _currentKeyframe;
+    return _currentKeyframe!;
   }
 
   @override

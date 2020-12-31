@@ -589,7 +589,7 @@ class JsonUtf8Reader extends JsonReader {
   }
 
   @override
-  String? nextString() {
+  String nextString() {
     var p = _peeked;
     if (p == peekedNone) {
       p = _doPeek();
@@ -614,7 +614,7 @@ class JsonUtf8Reader extends JsonReader {
     }
     _peeked = peekedNone;
     pathIndices[stackSize - 1]++;
-    return result;
+    return result!;
   }
 
   @override

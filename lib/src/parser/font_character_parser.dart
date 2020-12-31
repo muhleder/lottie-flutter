@@ -17,7 +17,7 @@ class FontCharacterParser {
     var width = 0.0;
     String? style;
     String? fontFamily;
-    var shapes = <ShapeGroup?>[];
+    var shapes = <ShapeGroup>[];
 
     reader.beginObject();
     while (reader.hasNext()) {
@@ -45,7 +45,7 @@ class FontCharacterParser {
                 reader.beginArray();
                 while (reader.hasNext()) {
                   shapes.add(ContentModelParser.parse(reader, composition)
-                      as ShapeGroup?);
+                      as ShapeGroup);
                 }
                 reader.endArray();
                 break;

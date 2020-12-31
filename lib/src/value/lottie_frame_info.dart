@@ -2,8 +2,8 @@
 class LottieFrameInfo<T> {
   final double startFrame;
   final double? endFrame;
-  final T startValue;
-  final T endValue;
+  final T? startValue;
+  final T? endValue;
   final double linearKeyframeProgress;
   final double interpolatedKeyframeProgress;
   final double overallProgress;

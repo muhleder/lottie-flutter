@@ -28,7 +28,7 @@ class FileLottie extends LottieProvider {
     });
   }
 
-  Future<ui.Image> _loadImage(
+  Future<ui.Image?> _loadImage(
       LottieComposition composition, LottieImageAsset lottieImage) {
     var imageProvider = getImageProvider(lottieImage);
 

@@ -9,7 +9,7 @@ class FontCharacter {
     return result;
   }
 
-  final List<ShapeGroup?> shapes;
+  final List<ShapeGroup> shapes;
   final String character;
   final double size;
   final double width;

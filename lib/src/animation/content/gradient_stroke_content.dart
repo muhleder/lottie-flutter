@@ -170,7 +170,7 @@ class GradientStrokeContent extends BaseStrokeContent {
         _colorCallbackAnimation = null;
       } else {
         _colorCallbackAnimation = ValueCallbackKeyframeAnimation(
-            callback as LottieValueCallback<List<Color>>);
+            callback as LottieValueCallback<List<Color>>, <Color>[]);
         _colorCallbackAnimation!.addUpdateListener(onUpdateListener);
         layer.addAnimation(_colorCallbackAnimation);
       }
