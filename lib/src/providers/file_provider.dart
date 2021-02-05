@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'package:flutter/src/painting/image_provider.dart';
 import 'package:path/path.dart' as p;
 import '../composition.dart';
 import '../lottie_image_asset.dart';
@@ -34,7 +35,7 @@ class FileLottie extends LottieProvider {
 
     imageProvider ??= io.loadImageForFile(file, lottieImage);
 
-    return loadImage(composition, lottieImage, imageProvider);
+    return loadImage(composition, lottieImage, imageProvider as ImageProvider<Object>);
   }
 
   @override
